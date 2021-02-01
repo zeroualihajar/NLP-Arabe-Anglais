@@ -1,0 +1,28 @@
+<div>
+  <form [formGroup]="form">
+    <input type="text" formControlName="username" placeholder="Username.." />
+    <br />
+
+    <input  type="text" formControlName="email" placeholder="Email.."/>
+    <br />
+    <input type="password" formControlName="password" placeholder="Password.."/>
+    <br />
+
+    <button (click)="addUser()" type="submit">Sign Up</button>
+  </form>
+</div>
+
+<div>
+  <form [formGroup]="form">
+    <input type="text" formControlName="username" placeholder="اسم المستخدم" />
+    <br />
+
+    <input  type="text" formControlName="email" placeholder="البريد الاكتروني.."/>
+    <br />
+    <input type="password" formControlName="password" placeholder="كلمة المرور"/>
+    <br />
+
+    <button (click)="addUser()" type="submit">Sign Up</button>
+  </form>
+</div>
+

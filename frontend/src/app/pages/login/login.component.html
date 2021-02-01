@@ -1,0 +1,11 @@
+<div>
+  <form [formGroup]="form">
+    <input  type="text" formControlName="email" placeholder="Email.."/>
+    <br />
+    <input type="password" formControlName="password" placeholder="Password.."/>
+    <br />
+
+    <button (click)="confirm()" type="submit">Login</button>
+  </form>
+</div>
+
