@@ -1,7 +1,21 @@
+<div id="lab">
+  <label></label>
+</div>
+
 <div>
-  <button type="submit" expand="float" [routerLink]="['/login']" routerLinkActive="router-link-active">Login</button>
-  <button type="submit" expand="float" [routerLink]="['/test']" routerLinkActive="router-link-active">As Guest</button>
+  <button type="submit" expand="float" style="margin-left:80%;" [routerLink]="['/principal']" routerLinkActive="router-link-active">Services</button>
+  <button type="submit" expand="float" style="margin-left:1%;" [routerLink]="['/main-ar']" routerLinkActive="router-link-active">Arabe</button>
+  <button type="submit" expand="float" style="margin-left:1%;" [routerLink]="['/login']" routerLinkActive="router-link-active">Login</button>
   <br>
-  <a [routerLink]="['/main-ar']" routerLinkActive="router-link-active" >العربية</a>
+</div>
+<br><br>
+<div>
+<mat-card>
+  <mat-card-title>Simple card</mat-card-title>
+    <br>
+    <div style="text-align: right;"> <button type="submit" expand="float" [routerLink]="['/details']" routerLinkActive="router-link-active">More details</button></div>
+  </mat-card>
+ 
+
 </div>
 

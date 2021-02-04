@@ -10,6 +10,10 @@ import { MainArComponent } from './pages/main-ar/main-ar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ServicesNlpComponent } from './pages/services-nlp/services-nlp.component';
+import { PrincipalComponent } from './pages/principal/principal.component';
+import { MatCardModule } from '@angular/material/card';
+import { DetailsComponent } from './pages/details/details.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MainArComponent,
     LoginComponent,
     SignupComponent,
+    ServicesNlpComponent,
+    PrincipalComponent,
+    DetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +34,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
