@@ -21,7 +21,8 @@ export class PrincipalComponent implements OnInit {
  ];
 
  form: FormGroup;
- serv: String = "";
+ result: any;
+ isDisabled: boolean = false;
 
   constructor(private fb: FormBuilder, private principalService: PrincipalService) {
   this.form = this.fb.group({
@@ -53,15 +54,12 @@ export class PrincipalComponent implements OnInit {
   }
 
   submitForm() {
-
-    for (var val of this.form.value.checkArray)
-    {
-      // this.serv += val
-      // this.serv += "-"
-      this.serv = val
-    }
-
     this.principalService.add(this.form)
+    this.result = this.principalService.rslt
+  }
+
+  nlp(event : any){
+    this.isDisabled = true;
 
   }
 

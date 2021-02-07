@@ -1,19 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-
+import { map } from 'rxjs/operators';
+import { Data } from 'src/app/models/Data';
+import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 
 
 const ScrapQuery = gql`
   query
   {
-    users
+    data
     {
       id
-      email
-      password
+      title
     }
   }
 `;
+
+
+interface Response{
+  data : Data[];
+}
 
 
 @Component({
@@ -23,14 +31,20 @@ const ScrapQuery = gql`
 })
 export class MainComponent implements OnInit {
 
-  public lang : Boolean = true;
-  constructor() { }
+  data$: Observable<Data[]> | undefined;
+  public static id: String="";
+
+  constructor(private apollo: Apollo, private router: Router) { }
 
   ngOnInit() {
+    this.data$ = this.apollo.watchQuery<Response>({
+          query: ScrapQuery,
+        }).valueChanges.pipe(map(result => result.data.data ));
   }
 
 
-  tokenization(){
-    console.log("hh")
+  more(event: any, id: any){
+    MainComponent.id = id
+    this.router.navigate(['/details']);
   }
 }

@@ -9,13 +9,14 @@
   <br>
 </div>
 <br><br>
-<div>
-<mat-card>
-  <mat-card-title>Simple card</mat-card-title>
+<div class ="card" *ngFor = "let dt of data$ | async">
+  <mat-card>
+  <mat-card-title style="text-align: center;">{{dt.title}}</mat-card-title>
     <br>
-    <div style="text-align: right;"> <button type="submit" expand="float" [routerLink]="['/details']" routerLinkActive="router-link-active">More details</button></div>
+     <div style="text-align: left;"> <button type="submit" expand="float" (click)="more($event, dt.id)" >More details</button></div>
   </mat-card>
- 
 
 </div>
+
+
 

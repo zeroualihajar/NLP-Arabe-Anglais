@@ -3,17 +3,20 @@
 <div id="pos">
   <div *ngFor="let data of Data; let i=index" style = "text-align: center; margin-right: 3%">
     <label>
-      <input type="checkbox" [value]="data.value" (change)="onCheckboxChange($event)" />
+      <input type="checkbox" [value]="data.value" (change)="onCheckboxChange($event)" [disabled]="isDisabled"/>
       <br>
       {{data.name}}
     </label>
   </div>
   </div>
-
   <p class="error" *ngIf="this.form.controls['checkArray'].errors?.required">
     Checkbox is required, select atleast one value.
   </p>
   <br>
+  <div style="text-align: center;">
+    <button type="submit" style="margin-left:1%; margin-right:1%" (click)="nlp($event)" > Natural Language Process </button>
+  </div>
+  <br><br>
 
   <div id="posArea">
     <textarea placeholder="Enter your text here..." style="width:100%;"  formControlName="myText"></textarea>
@@ -23,7 +26,7 @@
     <button type="submit" style="margin-left:1%; margin-right:1%"> valider </button>
   </div>
   <div id="res" >
-    <label style="width:100%;"></label>
+    <label style="width:100%;">{{result}}</label>
   </div>
 </form>
 

@@ -1,3 +1,4 @@
+from NLP import Nlp
 from NLP import BagOfWords, Lemmatization, Stemming, StopWords
 import graphene
 from graphene_mongo import MongoengineConnectionField, MongoengineObjectType
@@ -30,14 +31,14 @@ class Operation(MongoengineObjectType):
 class Text(MongoengineObjectType):
     class Meta:
         description = "text"
-        model = DataModel
+        model = TextModel
 
 
 #----------------------------------
 class Data(MongoengineObjectType):
     class Meta:
         description = "data"
-        model = TextModel
+        model = DataModel
 
 
 
@@ -61,8 +62,7 @@ class AddText(graphene.Mutation):
         id = graphene.String(required=True)
         content = graphene.String(required=True)
         nameOp = graphene.String(required=True)
-        resultOp = graphene.String(required=True)
-
+       
     user = graphene.Field(lambda: User)
 
     def mutate(self, info, id, content,  nameOp):
@@ -76,7 +76,7 @@ class AddText(graphene.Mutation):
         for x in user.text:
             if(x['content'] == content):
                 x.operation.append(operation)
-            
+        print(resultOp)
         user.save()
         return AddText(user=user)
 
@@ -89,7 +89,11 @@ class Mutation(graphene.ObjectType):
 
 class Query(graphene.ObjectType):
     users = graphene.List(User)
+    data = graphene.List(Data)
+    
     get_user = graphene.Field(User, email = graphene.String())
+    get_details = graphene.Field(Data, id = graphene.String())
+    get_res = graphene.Field(User, id=graphene.String())
 
 
     def resolve_users(self, info):
@@ -99,37 +103,48 @@ class Query(graphene.ObjectType):
        user = UserModel.objects.filter(email=email).first()
        return user
 
+    def resolve_data(self, info):
+        return list(DataModel.objects.all())
     
-    
-    
+    def resolve_get_details(self, info, id):
+        return DataModel.objects.filter(id= id).first()
 
-   
-    
+    def resolve_get_res(self, info, id):
+        user = UserModel.objects.filter(id=id).first()
+        
+        return user
+        
 
 
-#schema = graphene.Schema(query=Query, types=[Operation, User, Historique])
+        
 schema = graphene.Schema(query=Query, mutation=Mutation, types=[User, Operation, Text, Data])
 
 # #---------execute nlp operation choosed by user---------
+
+
 def nlp_Operation(text, operations):
-    
-    if 'Stop_words' in operations:
+    resultOp = []
+    if 'Stop Words' in operations:
         resultOp = StopWords.deleteStopWords(text)
-        #text = ' '.join(resultOp)
+        text = ' '.join(resultOp)
         # Query.saveOperation(user_id, 'Stop_words', resultOp, originText)
 
     if 'Stemming' in operations:
         resultOp = Stemming.defineStemming(text)
-        #text = ' '.join(resultOp)
+        text = ' '.join(resultOp)
         # Query.saveOperation(user_id, 'Stemming', resultOp, originText)
 
     if 'Lemmatization' in operations:
         resultOp = Lemmatization.getLemmatization(text)
-        #text = ' '.join(resultOp)
+        text = ' '.join(resultOp)
         #Query.saveOperation(user_id, 'Lemmatization', resultOp, originText)
 
     if 'BagOfWords' in operations:
         resultOp = BagOfWords.getbagOfWords(text)
-        #text = ' '.join(resultOp)
+        text = ' '.join(resultOp)
         #Query.saveOperation(user_id, 'BagOfWords', resultOp, originText)
+    
+    if 'NLP' in operations:
+        resultOp = Nlp.getNlp(text)
+        text = ' '.join(resultOp)
     return resultOp

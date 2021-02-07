@@ -10,7 +10,7 @@ POST_STATUS = ('pending', 'published', 'deleted', 'draft')
 class Operation(EmbeddedDocument):
     meta = {'collection': 'operation'}
     nameOp = StringField()
-    resultOp = ListField()
+    resultOp = ListField(StringField())
     dateOp = DateTimeField(default=datetime.now)
 
 

@@ -37,7 +37,7 @@ export class LoginService {
   email: String = "";
 
 
-  constructor(private apollo:Apollo,private router: Router) { }
+  constructor(private apollo:Apollo, private router: Router) { }
 
 
   loginQuery(form: FormGroup){

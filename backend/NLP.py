@@ -83,5 +83,12 @@ class BagOfWords():
         print(format(bag_of_words.toarray()))
 
 
+class Nlp():
+    def getNlp(content):
+        # -----------------------------------------_FilteredData_-----------------------------------------
+        content = StopWords.deleteStopWords(content)
+        content = Punctuation.removePunctuations(' '.join(content))
+        content = Stemming.defineStemming(content)
+
 #if __name__ == '__main__':
 #    Stemming.defineStemming(self=0)
