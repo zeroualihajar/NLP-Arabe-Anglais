@@ -7,5 +7,8 @@ Description du projet:
 Notre projet est composé de plusieurs services : 
 •	Premièrement le traitement de langage naturelle « NLP » des textes arabe ou anglais saisis par l’utilisateur, ce traitement contient les algorithmes suivant : Tokenization, Stop words, Lemmatization, stemming, Pos Tagging, bag of words , TF-IDF. 
 •	Deuxièmement, l’analyse des sentiments sur un texte en utilisant les techniques « data-clean » pour avoir plus de précision dans nos résultats.
-•	Troisièmes, détection des Fake News en entrainent un modèle en utilisant les techniques NLP et des algorithmes apprentissage
+•	Troisièmes, détection des Fake News en entrainent un modèle en utilisant les techniques NLP et des algorithmes apprentissage.
+
+
+                                                                                                                            LSI: Faculté des sciences et technique de Tanger.
 
