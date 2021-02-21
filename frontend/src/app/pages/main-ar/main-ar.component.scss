@@ -1,5 +1,34 @@
-#lab{
-  border: 0.01em grey solid;
-  width: 80%;
-  margin-right: 5%;
+#pos{
+  display: flex;
+  text-align: center;
 }
+
+#posArea{
+  display: flex;
+  text-align: center;
+  margin-left: 20%;
+  margin-right: 24%;
+  height: 10em;
+}
+
+#res{
+  margin-top:1%;
+  text-align: center;
+  border: 0.1em black solid;
+  height: 10em;
+  margin-left: 20%;
+  margin-right: 24%;
+  display: flex;
+}
+
+#bt{
+  background-color: #003e61;
+  border : #003e61;
+}
+
+#bt:hover{
+  background-color: #fed136;
+  color: #003e61;
+}
+
+

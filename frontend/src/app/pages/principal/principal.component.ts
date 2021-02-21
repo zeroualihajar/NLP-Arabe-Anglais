@@ -1,40 +1,62 @@
+import { LoginComponent } from './../login/login.component';
+import { Apollo, gql } from 'apollo-angular';
 import { PrincipalService } from './../../services/principal/principal.service';
-import { Operation } from './../../models/Operation';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators, AbstractControl } from '@angular/forms';
+
+const addText = gql`
+  mutation AddText($content: String!, $id: String!, $nameOp: String!)
+  {
+    addText(content: $content, id: $id, nameOp: $nameOp)
+    {
+      user
+      {
+        text
+        {
+          operation
+          {
+            resultOp
+          }
+        }
+      }
+    }
+  }
+`;
+
+
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.component.html',
   styleUrls: ['./principal.component.scss']
 })
+
 export class PrincipalComponent implements OnInit {
 
   Data: Array<any> = [
-  { name: 'Tokenization', value: 'Tokenization' },
-  { name: 'Stop Words' , value: 'Stop Words' },
-  { name: 'Lemmatization', value: 'Lemmatization' },
-  { name: 'Stemming', value: 'Stemming' },
-  { name: 'Pos Tagging', value: 'Pos Tagging' },
-  { name: 'Bag Of Words', value: 'Bag Of Words' },
-  { name: 'TF-IDF', value: 'TF-IDF'},
-  { name: 'Word2Vec', value: 'Word2Vec' }
+  { name: ' Tokenization تقطيع الجملة', value: 'Tokenization' },
+  { name: ' Stop Words المستبعدات' , value: 'Stop Words' },
+  { name: 'Lemmatization المدخل المعجمي', value: 'Lemmatization' },
+  { name: 'Stemming أصل الكلمة', value: 'Stemming' },
+
  ];
 
  form: FormGroup;
  result: any;
- isDisabled: boolean = false;
 
-  constructor(private fb: FormBuilder, private principalService: PrincipalService) {
+  serv: String ="";
+  res: any;
+  rslt: any;
+ 
+
+
+  constructor(private fb: FormBuilder, private apollo: Apollo) {
   this.form = this.fb.group({
     checkArray: this.fb.array([]),
     myText: new FormControl('', Validators.required)
   })
 }
 
-  ngOnInit(): void {
-
-
-  }
+  ngOnInit(): void {}
 
   onCheckboxChange(e: any) {
     const checkArray: FormArray = this.form.get('checkArray') as FormArray;
@@ -53,13 +75,55 @@ export class PrincipalComponent implements OnInit {
     }
   }
 
-  submitForm() {
-    this.principalService.add(this.form)
-    this.result = this.principalService.rslt
+  submitForm(){
+    console.log("text : " + LoginComponent.id )
+     this.apollo.mutate({
+      mutation: addText,
+      variables: {
+        content: this.form.value.myText,
+        id: LoginComponent.id,
+        nameOp: this.form.value.checkArray
+      }
+    }).subscribe(({data}) => {
+
+      this.res = data
+      let l = this.res['addText']['user']['text'].length
+      let k = this.res['addText']['user']['text'][l-1]['operation'].length
+
+      let ct = this.res['addText']['user']['text'][l-1]['operation'][k-1]['resultOp']
+
+      this.rslt = ct
+      this.result = this.rslt
+      console.log("data : "+this.rslt)
+      }, (error) => {
+        console.log('Error : ' , error)
+      });
+
   }
 
   nlp(event : any){
-    this.isDisabled = true;
+    this.apollo.mutate({
+      mutation: addText,
+      variables: {
+        content: this.form.value.myText,
+        id: LoginComponent.id,
+        nameOp: "nlp"
+      }
+    }).subscribe(({data}) => {
+
+      this.res = data
+      console.log(this.res)
+      let l = this.res['addText']['user']['text'].length
+      let k = this.res['addText']['user']['text'][l-1]['operation'].length
+
+      let ct = this.res['addText']['user']['text'][l-1]['operation'][k-1]['resultOp']
+
+      this.rslt = ct
+      this.result = this.rslt
+      console.log("data : "+this.rslt)
+      }, (error) => {
+        console.log('Error : ' , error)
+      });
 
   }
 

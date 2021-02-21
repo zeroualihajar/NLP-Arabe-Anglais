@@ -1,3 +1,4 @@
+import { LoginComponent } from './../../pages/login/login.component';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
@@ -32,7 +33,7 @@ export class LoginService {
   ps: any ;
   cryp: any;
 
-  public static id: String = "";
+  
   username: String ="";
   email: String = "";
 
@@ -52,19 +53,24 @@ export class LoginService {
         this.pass = this.ps['getUser']['password']
         var decrypted = this.get('123456$#@$^@1ERF',  this.pass);
 
-        LoginService.id = this.ps['getUser']['id']
+
         this.username = this.ps['getUser']['username']
         this.email = this.ps['getUser']['email']
 
 
         if(form.value.password == decrypted){
 
-        localStorage.setItem('isLogged', 'true');
+        LoginComponent.id = this.ps['getUser']['id']
+        console.log("LoginComponent.id")
+        LoginComponent.isLogged = true;
+
         this.router.navigate(['/principal']);
+
 
       }
       else{
-        console.log("Le mot de passe est incorrecte")
+        LoginComponent.ts = "1"
+        
       }
 
       }, (error) => {

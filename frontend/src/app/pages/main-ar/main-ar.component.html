@@ -1,12 +1,79 @@
-<div id="lab">
-  <label></label>
-</div>
 
-<div>
-  <button type="submit" expand="float" style="margin-right:1%;" [routerLink]="['/login']" routerLinkActive="router-link-active">تسجيل الدخول</button>
-  <button type="submit" expand="float" style="margin-right:1%;" [routerLink]="['/']" routerLinkActive="router-link-active">الإنجليزية</button>
-  <button type="submit" expand="float" style="margin-right:1%;" [routerLink]="['/principal']" routerLinkActive="router-link-active">الخدمات</button>
-  <button type="submit" expand="float" style="margin-ritght:1%;">الموضوع</button>
-  <br>
-</div>
+<div class="container" id="contact" style="margin-left: 21%">
+                <div class="text-center" >
+                    <h2 class="section-heading text-uppercase"></h2>
+                    <h2 class="section-heading text-uppercase"></h2>
+
+                </div>
+                <form [formGroup]="form" (ngSubmit)="submitForm()"  novalidate >
+                    <div class="row align-items-stretch mb-5">
+                        <div class="col-md" id="pos">
+                           <div *ngFor="let data of Data; let i=index" style = "text-align: center; margin-right: 3%">
+                            <label>
+                              <input type="checkbox" [value]="data.value" (change)="onCheckboxChange($event)" />
+                              <br>
+                              {{data.name}}
+                            </label>
+                          </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="row align-items-stretch mb-5">
+                        <div class="col-md-5">
+                            <div class="form-group form-group-textarea mb-md-0" >
+                                <textarea class="form-control" id="message" style="border: solid 1px; height: 15em;  font-family: 'Thabit' ; text-align: left " placeholder="Enter your text here ..." required="required" formControlName="myText"></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <p class="error" *ngIf="this.form.controls['checkArray'].errors?.required">
+                              Checkbox is required, select atleast one value.
+                            </p>
+                        </div>
+
+                          <div>
+                            <div>
+                              <button type="submit" style="background-color: white; border: white; margin-top: 180%"> <a> <img src="../assets/img/fleche.png"/></a></button>
+
+                            </div>
+
+                            <div style=" color: #003e61">
+
+                             <label>click</label>
+                            </div>
+                          </div>
+
+                        <div class="col-md-5">
+                            <div class="form-group form-group-textarea mb-md-0" style="border: solid 1px; height: 15em" >
+                              <label>{{result}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                     <div class="row align-items-stretch mb-5">
+                      <div class="col-md-6">
+                            <div class="form-group form-group-textarea mb-md-0"  >
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group form-group-textarea mb-md-0"  >
+                              <button (click)="nlp($event)" class="btn btn-primary btn-xl text-uppercase" id="bt"  type="submit" >Natural Language Process</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group form-group-textarea mb-md-0"  >
+                              <label></label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+
 

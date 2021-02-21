@@ -1,26 +1,29 @@
 import { Observable } from 'rxjs/Observable';
 import { Apollo } from 'apollo-angular';
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/User';
 import gql from 'graphql-tag';
 import { map } from 'rxjs/operators';
+import { His } from 'src/app/models/His';
+import { LoginComponent } from '../login/login.component';
 
 
-const UserQuery = gql`
-  query
+const getHis = gql`
+  query getHis($id: String)
   {
-    users
+    getHis(id: $id)
     {
-      id
-      email
-      password
+      text{
+        content
+        operation{
+          nameOp
+          resultOp
+          dateOp
+        }
+      }
+
     }
   }
 `;
-
-interface Response{
-  users : User[];
-}
 
 @Component({
   selector: 'app-test',
@@ -31,18 +34,36 @@ interface Response{
 
 export class TestComponent implements OnInit{
 
-  users$: Observable<User[]> | undefined;
+  ps: any ;
+  pass : string ="";
+  histo: His[] | undefined;
+  er: String="";
 
   constructor(private apollo: Apollo){
    }
 
 
   ngOnInit() {
+    if(LoginComponent.id != "603196b53af15dfe6dc4174b"){
+    this.apollo.watchQuery<His>({
+          query: getHis,
+          variables: {
+          id : LoginComponent.id,
+        }
+        }).valueChanges.subscribe((result) => {
 
+        this.ps = result.data
+        this.histo = this.ps['getHis']['text']
+        console.log(this.histo)
 
-     this.users$ = this.apollo.watchQuery<Response>({
-          query: UserQuery,
-        }).valueChanges.pipe(map(result => result.data.users ));
+      }, (error) => {
+        console.log(error)
+      });
+    }
+    else{
+      this.er = "أنت غير متصل الآن، بإمكانك تسجيل الدخول أو إنشاء حساب خاص إن لو تكن تتوفر عليه. ندعوك للإنضمام إلى منصتنا. "
+    }
+
 
     // this.users = this.testService.all().valueChanges.subscribe((data: { allUsers: User[]; }) => {
     //   this.users = data.allUsers;

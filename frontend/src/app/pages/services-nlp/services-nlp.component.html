@@ -1,1 +1,46 @@
-<p>services-nlp works!</p>
+<div class="container" id="contact" style="margin-left: 21%">
+                <div class="text-center" >
+                    <h2 class="section-heading text-uppercase"></h2>
+                    <h2 class="section-heading text-uppercase"></h2>
+
+                </div>
+                <form [formGroup]="form"  novalidate >
+
+                            <div style="text-align: right; margin-top: 5%" >
+                            <ul>
+                              "للتحقق من صحة خبر ما أدخل النص في الخانة أدناه، ثم اضغط على الزر  "حقيقة / إشاعة
+
+                              <br>"لتحديد المشاعر العامة الخاصة بنص ما، اضغط على الزر "تحديد الرأي
+
+                            </ul>
+
+                              </div>
+                            <div class="form-group form-group-textarea mb-md-0" style="margin-top: 1%" >
+                                <textarea class="form-control" id="message" style="border: solid 1px; height: 10em;  font-family: 'Thabit' ; text-align: right " placeholder="أدخل النص هنا" required="required" formControlName="myText"></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+
+                            <div class="form-group form-group-textarea mb-md-0" style="border: solid 1px; height: 2em; text-align: center" >
+                              <label>{{result}}</label>
+                            </div>
+
+
+                          <div>
+                            <div style="text-align: center; margin-top: 2%">
+                             <button type="submit"  (click)="fake()" class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" id="bt"> <a> حقيقة / إشاعة</a></button>
+                             <button type="submit"  (click)="submitForm()"  class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" id="bt" style = "margin-left: 2em"> <a>تحديد الرأي</a></button>
+                             </div>
+                          </div>
+
+
+
+                        <div class="col-md-5">
+
+                        </div>
+
+                </form>
+            </div>
+
+
+
+

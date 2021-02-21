@@ -39,5 +39,6 @@ class Data(Document):
     url = StringField(required=True)
     content = StringField(required=True)
     language = StringField(required=True)
+    score = FloatField(required=True)
     class_result = FloatField(required=True)
     operation = ListField(EmbeddedDocumentField(Operation))

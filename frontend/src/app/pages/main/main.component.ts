@@ -45,6 +45,7 @@ export class MainComponent implements OnInit {
 
   more(event: any, id: any){
     MainComponent.id = id
+    console.log(MainComponent.id)
     this.router.navigate(['/details']);
   }
 }

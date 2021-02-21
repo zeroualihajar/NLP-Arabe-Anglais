@@ -1,35 +1,75 @@
-<form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
+<div class="container" id="contact" style="margin-left: 21%">
+                <div class="text-center" >
+                    <h2 class="section-heading text-uppercase"></h2>
+                    <h2 class="section-heading text-uppercase"></h2>
 
-<div id="pos">
-  <div *ngFor="let data of Data; let i=index" style = "text-align: center; margin-right: 3%">
-    <label>
-      <input type="checkbox" [value]="data.value" (change)="onCheckboxChange($event)" [disabled]="isDisabled"/>
-      <br>
-      {{data.name}}
-    </label>
-  </div>
-  </div>
-  <p class="error" *ngIf="this.form.controls['checkArray'].errors?.required">
-    Checkbox is required, select atleast one value.
-  </p>
-  <br>
-  <div style="text-align: center;">
-    <button type="submit" style="margin-left:1%; margin-right:1%" (click)="nlp($event)" > Natural Language Process </button>
-  </div>
-  <br><br>
+                </div>
+                <form [formGroup]="form" (ngSubmit)="submitForm()"  novalidate >
+                    <div class="row align-items-stretch mb-5">
+                        <div class="col-md" id="pos">
+                           <div *ngFor="let data of Data; let i=index" style = "text-align: center; margin-right: 3%">
+                            <label>
+                              <input type="checkbox" [value]="data.value" (change)="onCheckboxChange($event)" />
+                              <br>
+                              {{data.name}}
+                            </label>
+                          </div>
+                        </div>
+                    </div>
 
-  <div id="posArea">
-    <textarea placeholder="Enter your text here..." style="width:100%;"  formControlName="myText"></textarea>
-  </div>
 
-  <div style="text-align: center; margin-top:1%">
-    <button type="submit" style="margin-left:1%; margin-right:1%"> valider </button>
-  </div>
-  <div id="res" >
-    <label style="width:100%;">{{result}}</label>
-  </div>
-</form>
 
+                    <div class="row align-items-stretch mb-5">
+                        <div class="col-md-5">
+                            <div class="form-group form-group-textarea mb-md-0" style="border: solid 1px; height: 15em; text-align: right" >
+                              <label>{{result}}</label>
+                            </div>
+                        </div>
+
+                          <div>
+                            <div>
+                              <button type="submit" style="background-color: white; border: white; margin-top: 180%"> <a> <img src="../assets/img/flech.png"/></a></button>
+
+                            </div>
+
+                            <div style=" color: #003e61">
+
+                             <label>اضغط</label>
+                            </div>
+                          </div>
+
+
+
+                        <div class="col-md-5">
+                            <div class="form-group form-group-textarea mb-md-0" >
+                                <textarea class="form-control" id="message" style="border: solid 1px; height: 15em;  font-family: 'Thabit' ; text-align: right " placeholder="أدخل النص هنا" required="required" formControlName="myText"></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <p class="error" *ngIf="this.form.controls['checkArray'].errors?.required">
+                              Checkbox is required, select atleast one value.
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                     <div class="row align-items-stretch mb-5">
+
+
+                        <div class="col-md-6">
+                            <div class="form-group form-group-textarea mb-md-0"  >
+                              <button (click)="nlp($event)" class="btn btn-primary btn-xl text-uppercase" id="bt"  type="submit" >المعالجة الآلية الخاصة باللغة العربية</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group form-group-textarea mb-md-0"  >
+                              <label></label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
 
 

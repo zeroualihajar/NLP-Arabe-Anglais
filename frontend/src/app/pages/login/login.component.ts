@@ -12,6 +12,10 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class LoginComponent implements OnInit {
 
   form!: FormGroup;
+  public static id : String = "603196b53af15dfe6dc4174b";
+  public static isLogged: boolean;
+  public  er: String = "";
+  public static ts : String = "";
 
   constructor(private formBuilder: FormBuilder, private loginService:LoginService) { }
 
@@ -23,8 +27,11 @@ export class LoginComponent implements OnInit {
   }
 
   confirm() {
-
     this.loginService.loginQuery(this.form)
+    if(LoginComponent.ts == "1"){
+      this.er = "Le mot de passe est incorrecte"
+
+    }
     }
 
 }

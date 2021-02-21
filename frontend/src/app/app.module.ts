@@ -14,6 +14,7 @@ import { ServicesNlpComponent } from './pages/services-nlp/services-nlp.componen
 import { PrincipalComponent } from './pages/principal/principal.component';
 import { MatCardModule } from '@angular/material/card';
 import { DetailsComponent } from './pages/details/details.component';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DetailsComponent } from './pages/details/details.component';
     ServicesNlpComponent,
     PrincipalComponent,
     DetailsComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

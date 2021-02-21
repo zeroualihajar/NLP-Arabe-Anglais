@@ -1,7 +1,6 @@
 #pos{
   display: flex;
   text-align: center;
-  margin-left: 20%;
 }
 
 #posArea{
@@ -21,3 +20,15 @@
   margin-right: 24%;
   display: flex;
 }
+
+#bt{
+  background-color: #003e61;
+  border : #003e61;
+}
+
+#bt:hover{
+  background-color: #fed136;
+  color: #003e61;
+}
+
+

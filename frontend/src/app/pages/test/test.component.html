@@ -1,8 +1,24 @@
-<div class ="card" *ngFor = "let user of users$ | async">
-  <div>
-    <h5>{{user.id}}</h5>
-    <h5>{{user.email}}</h5>
-    <h5>{{user.password}}</h5>
+<div class="page-section bg-light" id="portfolio">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-heading text-uppercase">السجل</h2>
+    </div>
+    <div style="text-align: right">
+      {{er}}
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-sm-6 mb-4" *ngFor = "let his of histo " style="border: solid 1px red">
+        <div class="portfolio-item">
+          <div class="portfolio-caption">
+            <div class="portfolio-caption-heading"><h6 style="color: red;">Text</h6><h6>{{his.content}}</h6></div>
+            <div class="portfolio-caption-subheading text-muted" *ngFor = "let op of his.operation">
+              <h6 style="color: red;">Operation</h6>{{op.nameOp}}<br>
+              <h6 style="color: red;">Date</h6>{{op.dateOp}}<br>
+              <h6 style="color: red;">Resultat</h6>{{op.resultOp}}
+            
+            </div>
+        </div>
+        </div>
+    </div>
   </div>
 </div>
-<div>----------------------</div>

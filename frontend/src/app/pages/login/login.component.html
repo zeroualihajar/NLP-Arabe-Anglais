@@ -1,11 +1,45 @@
-<div>
-  <form [formGroup]="form">
-    <input  type="text" formControlName="email" placeholder="Email.."/>
-    <br />
-    <input type="password" formControlName="password" placeholder="Password.."/>
-    <br />
+<div class="container" id="contact" style="margin-left: 21%; margin-top: 5%">
+    <form [formGroup]="form" (ngSubmit)="confirm()" novalidate >
 
-    <button (click)="confirm()" type="submit">Login</button>
-  </form>
+        <div class="row align-items-stretch mb-5" style="margin-left: 17%; ">
+
+          <div class ="card" style=" border: solid 3px #003e61; width: 50%;">
+            <mat-card>
+            <mat-card-title style="text-align: center;"><img src="assets/img/key.png" alt="" style="width: 4em; height: 4em" /></mat-card-title>
+              <br>
+              <div class="form-group">
+                      <input  style="text-align: right; border: solid 1px #003e61" class="form-control" id="email"  formControlName="email" type="email" placeholder=" ... البريد الإلكتروني" required="required" data-validation-required-message="Please enter your name." />
+
+                      <p class="help-block text-danger"></p>
+
+                  </div>
+                  <br>
+                  <div>
+                      <input style="text-align: right; border: solid 1px #003e61" class="form-control" id="password"  formControlName="password" type="password" placeholder=" ... كلمة المرور" required="required" data-validation-required-message="Please enter your phone number." />
+                      <p class="help-block text-danger"></p>
+                  </div>
+                  <br>
+                   <div>
+                    {{er}}
+                </div>
+                <br>
+
+                    <div class="text-center">
+                      <div id="success"></div>
+                      <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" id="bt" type="submit">تسجيل الدخول</button>
+
+                  </div>
+                    <br>
+                  <div class="text-center">
+                     <a  href="/signup" style="color: blue">إنشاء حساب جديد ؟ </a>
+                  </div>
+
+                  <br>
+                  <br>
+                  <br>
+              </mat-card>
+             </div>
+          </div>
+
+    </form>
 </div>
-
