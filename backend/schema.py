@@ -139,7 +139,7 @@ class AddFake(graphene.Mutation):
         for x in user.text:
             if(x['content'] == content):
                 x.operation.append(operation)
-        print(resultOp)
+        # print(resultOp)
         user.save()
         return AddFake(user=user)
 
@@ -239,12 +239,14 @@ def nlp_Operation(text, operations):
         text = ' '.join(resultOp)
 
     if 'Pos Tagging' in operations:
-        tx = PosTagging.getpos(text)
+        test = PosTagging.getpos(text)
+        resultOp = ([str(i) for i in test])
         text = ' '.join(resultOp)
 
     if 'TF-IDF' in operations:
-        tx = TFIDF.gettf(text)
+        resultOp.append(TFIDF.gettf(text))
         text = ' '.join(resultOp)
+
      
     if 'nlp' in operations:
         resultOp = Naturalproc.getNlp(text)

@@ -3,6 +3,7 @@
 from nltk.stem.porter import PorterStemmer
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.tag import pos_tag_sents
+from nltk.tokenize import sent_tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer
 import re
 from num2words import num2words
@@ -142,21 +143,23 @@ class BagOfWordsEn():
 class PosTagging():
 
     def getpos(example_sent):
-        tokens = word_tokenize(example_sent)
-
+        stop_words = set(stopwords.words('arabic'))
+        tokens = sent_tokenize(example_sent)
         for i in tokens:
+
             word_list = nltk.word_tokenize(i)
-            word_list = [word for word in word_list if not word in tokens]
-            tagged = nltk.pos_tag(word_list)
-        return tagged
+            word_list = [word for word in word_list if not word in stop_words]
+            pos = nltk.pos_tag(word_list)
+        return pos
 
 #********************************************TFIDF****************************************
 class TFIDF():
 
     def gettf(example_sent):
         tokens = word_tokenize(example_sent)
-        tfidf = TfidfVectorizer(tokenizer=tokens, stop_words='english')
+        tfidf = TfidfVectorizer(tokenizer=tokens, stop_words=stopwords.words('english'))
         return tfidf
+
 
 
 
