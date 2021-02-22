@@ -137,7 +137,8 @@ class BagOfWordsEn():
 
     def getbagOfWords(example_sent):
         vect = CountVectorizer()
-        bag_of_words = vect.transform(example_sent)
+        bag_of_words = vect.transform(example_sent).toarray()
+
         return bag_of_words
 
 

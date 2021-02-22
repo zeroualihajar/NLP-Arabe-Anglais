@@ -236,6 +236,7 @@ def nlp_Operation(text, operations):
     
     if 'Bag Of WordsEn' in operations:
         resultOp = BagOfWordsEn.getbagOfWordsEn(text)
+        # print(test)
         text = ' '.join(resultOp)
 
     if 'Pos Tagging' in operations:
@@ -244,7 +245,8 @@ def nlp_Operation(text, operations):
         text = ' '.join(resultOp)
 
     if 'TF-IDF' in operations:
-        resultOp = TFIDF.gettf(text)
+        test = [TFIDF.gettf(text)]
+        resultOp = ([str(i) for i in test])
         text = ' '.join(resultOp)
 
      
