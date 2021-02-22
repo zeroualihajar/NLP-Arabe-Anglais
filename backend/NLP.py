@@ -102,6 +102,8 @@ class LemmatizationEn():
         lemmatized = []
         for word in word_tokens:
             lemmatized.append(nltk.ISRIStemmer().suf32(word))
+        
+        return lemmatized
 
         
 

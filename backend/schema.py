@@ -244,7 +244,7 @@ def nlp_Operation(text, operations):
         text = ' '.join(resultOp)
 
     if 'TF-IDF' in operations:
-        resultOp.append(TFIDF.gettf(text))
+        resultOp = TFIDF.gettf(text)
         text = ' '.join(resultOp)
 
      
